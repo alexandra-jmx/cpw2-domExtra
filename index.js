@@ -1,24 +1,45 @@
-/*Implemente um código JS que carrega imagens a medida que o usuário realiza a rolagem (scroll) até o final da página. Nesse sentido, siga os seguintes passos:
+const imageArray = [
+    "unsplash-cat-1.jpg",
+    "unsplash-cat-2.jpg",
+    "unsplash-cat-3.jpg",
+    "unsplash-cat-4.jpg",
+    "unsplash-cat-5.jpg",
+    "unsplash-cat-6.jpg",
+    "unsplash-cat-7.jpg",
+    "unsplash-cat-8.jpg",
+    "unsplash-cat-9.jpg",
+    "unsplash-cat-10.jpg",
+    "unsplash-cat-11.jpg",
+    "unsplash-cat-12.jpg",
+    "unsplash-cat-13.jpg",
+    "unsplash-cat-14.jpg",
+    "unsplash-cat-15.jpg",
+    "unsplash-cat-16.jpg",
+    "unsplash-cat-17.jpg",
+];
 
-1 – Implemente um array contento pelo menos 15 endereços de imagens
+const imagens = document.querySelector('.images');
 
-2 – Crie uma função para escolher randomicamente uma imagem do array. Dica:
+function getRandomNr(){
+    return Math.floor(Math.random() * imageArray.length);
+}
 
-https://www.w3schools.com/js/js_random.asp
+function loadImages(numImages = 17)
+{
+    let i = 0;
+    while (i < numImages){
+        const img = document.createElement('img');
+        img.src = `./images/${imageArray[getRandomNr()]}`;
+        imagens.appendChild(img);
+        i++
+    }   
+      
+};
 
-3 – Quando o usuário entrar na página carregue, por meio do DOM, conjunto de imagens randômicas na página e, quando o usuário realizar o scroll até o final, continue carregando infinitamente. Dica:
+loadImages();
 
-if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-// você está no final da página
-}*/
-
-//1 - Criando array de imagens
-const images = [];
-
-//2
-/*W3C Tutorial - Random min and max included
-function getRndInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) ) + min;
-  }*/
-
-//3 
+window.addEventListener('scroll', () => {
+    if(window.scrollY + window.innerHeight >= document.documentElement.scrollHeight){
+       loadImages();
+    }
+})
